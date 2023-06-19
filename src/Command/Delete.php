@@ -33,8 +33,8 @@ class Delete extends Command
     }
 
     /**
+     * @return FileMakerException|\airmoi\FileMaker\Object\Result|null
      *
-     * @return \airmoi\FileMaker\Object\Result|FileMakerException
      * @throws FileMakerException
      */
     public function execute()

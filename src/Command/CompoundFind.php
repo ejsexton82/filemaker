@@ -30,12 +30,14 @@ class CompoundFind extends Command
     private $requests = [];
 
      /**
-     * Adds a Find Request object to this Compound Find command.
+     *  Adds a Find Request object to this Compound Find command.
      *
      * @param int $precedence Priority in which the find requests are added to
      *        this compound find set.
      * @param FindRequest $findrequest {@link FindRequest} object
      *        to add to this compound find set.
+     *
+     * @return void
      */
     public function add($precedence, FindRequest $findrequest)
     {
@@ -43,7 +45,7 @@ class CompoundFind extends Command
     }
 
      /**
-     * Adds a sorting rule to this Compound Find command.
+     *  Adds a sorting rule to this Compound Find command.
      *
      * @param string $fieldname Name of the field to sort by.
      * @param integer $precedence Integer from 1 to 9, inclusive. A value
@@ -54,6 +56,8 @@ class CompoundFind extends Command
      * @param mixed $order Direction of the sort. Specify the
      *        FileMaker::SORT_ASCEND constant, the FileMaker::SORT_DESCEND
      *        constant, or the name of a value list specified as a string.
+     *
+     * @return void
      */
     public function addSortRule($fieldname, $precedence, $order = null)
     {
@@ -64,7 +68,9 @@ class CompoundFind extends Command
     }
 
     /**
-     * Clears all existing sorting rules from this Compound Find command.
+     *  Clears all existing sorting rules from this Compound Find command.
+     *
+     * @return void
      */
     public function clearSortRules()
     {
@@ -73,8 +79,8 @@ class CompoundFind extends Command
     }
 
     /**
+     * @return \airmoi\FileMaker\FileMakerException|\airmoi\FileMaker\Object\Result|null|true
      *
-     * @return \airmoi\FileMaker\Object\Result|\airmoi\FileMaker\FileMakerException
      * @throws \airmoi\FileMaker\FileMakerException
      */
     public function execute()
@@ -127,11 +133,13 @@ class CompoundFind extends Command
     }
 
     /**
-     * Sets a range to request only part of the result set.
+     *  Sets a range to request only part of the result set.
      *
      * @param integer $skip Number of records to skip past. Default is 0.
      * @param integer $max Maximum number of records to return.
      *        Default is all.
+     *
+     * @return void
      */
     public function setRange($skip = 0, $max = null)
     {
@@ -156,16 +164,18 @@ class CompoundFind extends Command
     }
 
     /**
-     * Sets a filter to restrict the number of related records to return from
-     * a portal.
+     *  Sets a filter to restrict the number of related records to return from
+     *  a portal.
      *
-     * For more information, see the description for the
-     * {@link Find::setRelatedSetsFilters()} method.
+     *  For more information, see the description for the
+     *  {@link Find::setRelatedSetsFilters()} method.
      *
      * @param string $relatedsetsfilter Specify either 'layout' or 'none' to
      *        control filtering.
      * @param string $relatedsetsmax Maximum number of portal records
      *        to return.
+     *
+     * @return void
      */
     public function setRelatedSetsFilters($relatedsetsfilter, $relatedsetsmax = null)
     {
@@ -192,7 +202,10 @@ class CompoundFind extends Command
 
     /**
      * Build relatedSets Filter params
-     * @param $params
+     *
+     * @param array $params
+     *
+     * @return void
      */
     public function setRelatedSetsFiltersParams(&$params)
     {
@@ -205,8 +218,11 @@ class CompoundFind extends Command
     }
 
     /**
-     * Build sort params
-     * @param $params
+     *  Build sort params
+     *
+     * @param array $params
+     *
+     * @return void
      */
     public function setSortParams(&$params)
     {
@@ -220,7 +236,10 @@ class CompoundFind extends Command
 
     /**
      * Build range params
-     * @param $params
+     *
+     * @param array $params
+     *
+     * @return void
      */
     public function setRangeParams(&$params)
     {

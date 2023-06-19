@@ -24,12 +24,14 @@ class FileMakerValidationException extends FileMakerException
     public $errors = [];
 
     /**
-     * Adds an error.
+     *  Adds an error.
      *
      * @param Field $field Field object that failed pre-validation.
      * @param integer $rule Pre-validation rule that failed specified as one
      *        of the FileMaker::RULE_* constants.
      * @param string $value Value that failed pre-validation.
+     *
+     * @return void
      */
     public function addError(Field $field, $rule, $value)
     {

@@ -92,11 +92,12 @@ class RelatedSet
     }
 
     /**
-     * Loads extended (FMPXMLLAYOUT) layout information.
+     *  Loads extended (FMPXMLLAYOUT) layout information.
      *
      * @access private
      *
-     * @return boolean|FileMakerException TRUE, if successful.
+     * @return FileMakerException|null TRUE, if successful.
+     *
      * @throws FileMakerException
      */
     public function loadExtendedInfo()

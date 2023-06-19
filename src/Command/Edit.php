@@ -209,17 +209,19 @@ class Edit extends Command
     }
 
     /**
-     * Sets the modification ID for this command.
+     *  Sets the modification ID for this command.
      *
-     * Before you edit a record, you can use the
-     * {@link Record::getModificationId()} method to get the record's
-     * modification ID. By specifying a modification ID when you execute an
-     * Edit command, you can make sure that you are editing the current version
-     * of a record. If the modification ID value you specify does not match the
-     * current modification ID value in the database, the Edit command is not
-     * allowed and an error code is returned.
+     *  Before you edit a record, you can use the
+     *  {@link Record::getModificationId()} method to get the record's
+     *  modification ID. By specifying a modification ID when you execute an
+     *  Edit command, you can make sure that you are editing the current version
+     *  of a record. If the modification ID value you specify does not match the
+     *  current modification ID value in the database, the Edit command is not
+     *  allowed and an error code is returned.
      *
      * @param integer $modificationId Modification ID.
+     *
+     * @return void
      */
     public function setModificationId($modificationId)
     {
@@ -227,8 +229,11 @@ class Edit extends Command
     }
 
     /**
-     * Set the related record ID to delete
+     *  Set the related record ID to delete
+     *
      * @param int $relatedRecordId
+     *
+     * @return void
      */
     public function setDeleteRelated($relatedRecordId)
     {

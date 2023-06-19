@@ -33,10 +33,11 @@ class Duplicate extends Command
     }
 
     /**
-     * Return a Result object with the duplicated record
-     * use Result->getFirstRecord() to get the record
+     *  Return a Result object with the duplicated record
+     *  use Result->getFirstRecord() to get the record
      *
-     * @return Result|FileMakerException
+     * @return FileMakerException|Result|null
+     *
      * @throws FileMakerException
      */
     public function execute()

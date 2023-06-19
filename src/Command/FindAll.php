@@ -16,8 +16,8 @@ use airmoi\FileMaker\Object\Result;
 class FindAll extends Find
 {
     /**
+     * @return Result|\airmoi\FileMaker\FileMakerException|null|true
      *
-     * @return Result|\airmoi\FileMaker\FileMakerException
      * @throws \airmoi\FileMaker\FileMakerException
      */
     public function execute()

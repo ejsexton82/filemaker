@@ -62,8 +62,10 @@ class Find extends Command
     }
 
     /**
-     * Execute the command
-     * @return \airmoi\FileMaker\FileMakerException|\airmoi\FileMaker\Object\Result|string
+     *  Execute the command
+     *
+     * @return \airmoi\FileMaker\FileMakerException|\airmoi\FileMaker\Object\Result|bool|null|string
+     *
      * @throws \airmoi\FileMaker\FileMakerException
      */
     public function execute()
@@ -201,8 +203,11 @@ class Find extends Command
     }
 
     /**
-     * Set relatedSet Filters params
+     *  Set relatedSet Filters params
+     *
      * @param array $params
+     *
+     * @return void
      */
     protected function setRelatedSetsFiltersParams(&$params)
     {
@@ -215,8 +220,11 @@ class Find extends Command
     }
 
     /**
-     * Set sort Params
+     *  Set sort Params
+     *
      * @param array $params
+     *
+     * @return void
      */
     protected function setSortParams(&$params)
     {
@@ -229,8 +237,11 @@ class Find extends Command
     }
 
     /**
-     * Set Range params
+     *  Set Range params
+     *
      * @param array $params
+     *
+     * @return void
      */
     protected function setRangeParams(&$params)
     {

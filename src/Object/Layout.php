@@ -159,11 +159,14 @@ class Layout
     }
 
     /**
-     * Returns the names of any value lists associated with this
-     * layout.
+     *  Returns the names of any value lists associated with this
+     *  layout.
      *
-     * @return array|FileMakerException List of value list names as strings.
+     * @return (int|string)[]|FileMakerException|bool List of value list names as strings.
+     *
      * @throws FileMakerException
+     *
+     * @psalm-return FileMakerException|bool|list<int|string>
      */
     public function listValueLists()
     {

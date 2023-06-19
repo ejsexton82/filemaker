@@ -205,9 +205,9 @@ class Command
     }
 
     /**
-     * Executes the command.
+     *  Executes the command.
      *
-     * @return Result Result object.
+     * @return void
      */
     public function execute()
     {
@@ -254,9 +254,10 @@ class Command
     }
 
     /**
-     *
      * @param string $xml
-     * @return Result|FileMakerException
+     *
+     * @return FileMakerException|Result|null|true
+     *
      * @throws FileMakerException
      */
     protected function getResult($xml)

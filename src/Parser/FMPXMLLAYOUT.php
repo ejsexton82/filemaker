@@ -41,9 +41,10 @@ class FMPXMLLAYOUT
     }
 
     /**
-     *
      * @param string $xmlResponse
-     * @return boolean|FileMakerException
+     *
+     * @return FileMakerException|null|true
+     *
      * @throws FileMakerException
      */
     public function parse($xmlResponse)
@@ -55,9 +56,7 @@ class FMPXMLLAYOUT
         xml_set_object($this->xmlParser, $this);
         xml_parser_set_option($this->xmlParser, XML_OPTION_CASE_FOLDING, false);
         xml_parser_set_option($this->xmlParser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
-        /** @psalm-suppress UndefinedFunction */
         xml_set_element_handler($this->xmlParser, 'start', 'end');
-        /** @psalm-suppress UndefinedFunction */
         xml_set_character_data_handler($this->xmlParser, 'cdata');
         if (!@xml_parse($this->xmlParser, $xmlResponse)) {
             return $this->fm->returnOrThrowException(
@@ -77,10 +76,12 @@ class FMPXMLLAYOUT
     }
 
     /**
-     * Add extended infos to a Layout object
+     *  Add extended infos to a Layout object
      *
      * @param Layout $layout
-     * @return FileMakerException
+     *
+     * @return FileMakerException|null|true
+     *
      * @throws FileMakerException
      */
     public function setExtendedInfo(Layout $layout)
@@ -105,11 +106,13 @@ class FMPXMLLAYOUT
     }
 
     /**
-     * xml_parser start element handler
+     *  xml_parser start element handler
      *
      * @param resource $parser
      * @param string $type
      * @param array $datas
+     *
+     * @return void
      */
     private function start($parser, $type, $datas)
     {
@@ -136,10 +139,12 @@ class FMPXMLLAYOUT
     }
 
     /**
-     * xml_parser end element handler
+     *  xml_parser end element handler
      *
      * @param resource $parser
      * @param string $type
+     *
+     * @return void
      */
     private function end($parser, $type)
     {
@@ -156,10 +161,12 @@ class FMPXMLLAYOUT
     }
 
     /**
-     * xml_parser character data handler (cdata)
+     *  xml_parser character data handler (cdata)
      *
      * @param resource $parser
      * @param string $datas
+     *
+     * @return void
      */
     public function cdata($parser, $datas)
     {
@@ -177,11 +184,12 @@ class FMPXMLLAYOUT
     }
 
     /**
-     * Add values to an existing array
+     *  Add values to an existing array
      *
      * @param array $array
      * @param array $values
-     * @return boolean
+     *
+     * @return array|false
      */
     public function associativeArrayPush(&$array, $values)
     {

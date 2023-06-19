@@ -548,12 +548,15 @@ class FileMaker
     }
 
     /**
-     * Returns an array of databases that are available with the current
-     * server settings and the current user name and password
-     * credentials.
+     *  Returns an array of databases that are available with the current
+     *  server settings and the current user name and password
+     *  credentials.
      *
-     * @return string[]|FileMakerException List of database names.
+     * @return FileMakerException|array|bool|null|string List of database names.
+     *
      * @throws FileMakerException
+     *
+     * @psalm-return FileMakerException|bool|list{0?: mixed,...}|null|string
      */
     public function listDatabases()
     {
@@ -580,8 +583,11 @@ class FileMaker
      * are available with the current server settings and the current user
      * name and password credentials.
      *
-     * @return array|FileMakerException List of script names.
+     * @return FileMakerException|array|bool|null|string
+     *
      * @throws FileMakerException
+     *
+     * @psalm-return FileMakerException|bool|list{0?: mixed,...}|null|string
      */
     public function listScripts()
     {
@@ -619,8 +625,11 @@ class FileMaker
      * available with the current server settings and the current
      * user name and password credentials.
      *
-     * @return array|FileMakerException List of layout names.
+     * @return FileMakerException|array|bool|null|string
+     *
      * @throws FileMakerException
+     *
+     * @psalm-return FileMakerException|bool|list{0?: mixed,...}|null|string
      */
     public function listLayouts()
     {
@@ -648,6 +657,8 @@ class FileMaker
     /**
      * @param string $message
      * @param int $level
+     *
+     * @return void
      */
     public function log($message, $level)
     {
@@ -664,6 +675,8 @@ class FileMaker
 
     /**
      * @param string $token
+     *
+     * @return void
      */
     public function beginProfile($token)
     {
@@ -679,7 +692,8 @@ class FileMaker
     }
 
     /**
-     * @param $key string key identifying the cached value.
+     * @param string $key string key identifying the cached value.
+     *
      * @return bool|mixed The value stored in cache, false if the value is not in the cache or expired.
      */
     public function cacheGet($key)
@@ -698,8 +712,9 @@ class FileMaker
     }
 
     /**
-     * @param $key string A key identifying the value to be cached.
-     * @param $value mixed The value to be cached
+     * @param string $key string A key identifying the value to be cached.
+     * @param Layout $value mixed The value to be cached
+     *
      * @return boolean
      */
     public function cacheSet($key, $value)
@@ -717,6 +732,8 @@ class FileMaker
 
     /**
      * @param string $token
+     *
+     * @return void
      */
     public function endProfile($token)
     {
@@ -732,22 +749,22 @@ class FileMaker
     }
 
     /**
-     * Returns the data for the specified container field.
-     * Pass in a URL string that represents the file path for the container
-     * field contents. For example, get the image data from a container field
-     * named 'Cover Image'. For a Object\Record object named $record,
-     * URL-encode the path returned by the getField() method.  For example:
+     *  Returns the data for the specified container field.
+     *  Pass in a URL string that represents the file path for the container
+     *  field contents. For example, get the image data from a container field
+     *  named 'Cover Image'. For a Object\Record object named $record,
+     *  URL-encode the path returned by the getField() method.  For example:
      *
      * @example <IMG src="img.php?-url=<?php echo urlencode($record->getField('Cover Image')); ?>">
-     *
+
      * Then as shown below in a line from img.php, pass the URL into
      * getContainerData() for the FileMaker object named $fm:
-     *
      * @example echo $fm->getContainerData($_GET['-url']);
      *
      * @param string $url URL of the container field contents to get.
      *
-     * @return string|FileMakerException Raw field data.
+     * @return FileMakerException|bool|null|string Raw field data.
+     *
      * @throws FileMakerException if remote container field or curl not active.
      */
     public function getContainerData($url)
@@ -817,12 +834,13 @@ class FileMaker
     }
 
     /**
-     * Perform xml query to FM Server
+     *  Perform xml query to FM Server
      *
      * @param array $params
      * @param string $grammar fm xml grammar
      *
-     * @return string|FileMakerException the cUrl response
+     * @return FileMakerException|bool|null|string the cUrl response
+     *
      * @throws FileMakerException
      */
     public function execute($params, $grammar = 'fmresultset')
@@ -941,8 +959,11 @@ class FileMaker
     }
 
     /**
-     * Set curl Sesion cookie
+     *  Set curl Sesion cookie
+     *
      * @param resource $curl a cUrl handle ressource
+     *
+     * @return void
      */
     private function setCurlWPCSessionCookie($curl)
     {
@@ -959,8 +980,11 @@ class FileMaker
     }
 
     /**
-     * Pass WPC session cookie to client for later auth
+     *  Pass WPC session cookie to client for later auth
+     *
      * @param string $curlResponse a curl response
+     *
+     * @return void
      */
     private function setClientWPCSessionCookie($curlResponse)
     {
@@ -976,9 +1000,11 @@ class FileMaker
     }
 
     /**
-     *
      * @param string $curlResponse a curl response
-     * @return int content length, -1 if not provided by headers
+     *
+     * @return int|string content length, -1 if not provided by headers
+     *
+     * @psalm-return -1|string
      */
     private function getContentLength($curlResponse)
     {
@@ -1067,7 +1093,10 @@ class FileMaker
 
     /**
      * @param array|string $value
-     * @return array|string
+     *
+     * @return ((((((array|mixed|string)[]|mixed|string)[]|mixed|string)[]|mixed|string)[]|mixed|string)[]|mixed|string)[]|string
+     *
+     * @psalm-return array<array-key|array<array-key|array<array-key|array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>, array<array-key|array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>, array<array-key|array<array|array-key, array|mixed|string>, array<array|array-key, array|mixed|string>|mixed|string>|mixed|string>|mixed|string>|mixed|string>|mixed|string>|string
      */
     public function toOutputCharset($value)
     {
@@ -1150,10 +1179,13 @@ class FileMaker
     }
 
     /**
-     * Convert curl errors to FileMakerException
+     *  Convert curl errors to FileMakerException
+     *
      * @param int $curlError
      * @param resource $curl
-     * @return FileMakerException
+     *
+     * @return FileMakerException|null
+     *
      * @throws FileMakerException
      */
     private function handleCurlError($curlError, $curl)
@@ -1182,6 +1214,9 @@ class FileMaker
         );
     }
 
+    /**
+     * @return string
+     */
     private function connexionId()
     {
         return md5($this->hostspec . "#" . $this->database . "#" . $this->username);

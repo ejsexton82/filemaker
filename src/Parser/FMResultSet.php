@@ -55,10 +55,12 @@ class FMResultSet
     }
 
     /**
-     * Parse the provided xml
+     *  Parse the provided xml
      *
      * @param string $xml
-     * @return FileMakerException|boolean
+     *
+     * @return FileMakerException|null|true
+     *
      * @throws FileMakerException
      */
     public function parse($xml)
@@ -70,9 +72,7 @@ class FMResultSet
         xml_set_object($this->xmlParser, $this);
         xml_parser_set_option($this->xmlParser, XML_OPTION_CASE_FOLDING, false);
         xml_parser_set_option($this->xmlParser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
-        /** @psalm-suppress UndefinedFunction */
         xml_set_element_handler($this->xmlParser, 'start', 'end');
-        /** @psalm-suppress UndefinedFunction */
         xml_set_character_data_handler($this->xmlParser, 'cdata');
         if (!@xml_parse($this->xmlParser, $xml)) {
             return $this->fm->returnOrThrowException(
@@ -99,11 +99,13 @@ class FMResultSet
     }
 
     /**
-     * Populate a result object with parsed datas
+     *  Populate a result object with parsed datas
      *
      * @param \airmoi\FileMaker\Object\Result $result
      * @param string $recordClass string representing the record class name to use
-     * @return FileMakerException|boolean
+     *
+     * @return FileMakerException|null|true
+     *
      * @throws FileMakerException
      */
     public function setResult(Result $result, $recordClass = 'airmoi\FileMaker\Object\Record')
@@ -147,10 +149,12 @@ class FMResultSet
     }
 
     /**
-     * Populate a layout object with parsed datas
+     *  Populate a layout object with parsed datas
      *
      * @param Layout $layout
-     * @return FileMakerException|boolean
+     *
+     * @return FileMakerException|null|true
+     *
      * @throws FileMakerException
      */
     public function setLayout(Layout $layout)
@@ -259,11 +263,13 @@ class FMResultSet
         return true;
     }
     /**
-     * xml_parser start element handler
+     *  xml_parser start element handler
      *
      * @param resource $parser
      * @param string $tag
      * @param array $datas
+     *
+     * @return void
      */
     private function start($parser, $tag, $datas)
     {
@@ -317,10 +323,12 @@ class FMResultSet
     }
 
     /**
-     * xml_parser end element handler
+     *  xml_parser end element handler
      *
      * @param mixed $parser
      * @param string $tag
+     *
+     * @return void
      */
     private function end($parser, $tag)
     {
@@ -352,10 +360,12 @@ class FMResultSet
     }
 
     /**
-     * xml_parser character data handler (cdata)
+     *  xml_parser character data handler (cdata)
      *
      * @param resource $parser
      * @param string $data
+     *
+     * @return void
      */
     private function cdata($parser, $data)
     {

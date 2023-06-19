@@ -29,3 +29,7 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 /tests/bootstrap_originalapi.php
+tags
+.phpunit.cache
+.phpunit.result.cache
+*.bak

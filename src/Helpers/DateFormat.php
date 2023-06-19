@@ -51,9 +51,10 @@ class DateFormat
     }
 
     /**
-     * @param $value
+     * @param string $value
      * @param string|null $inputFormat
      * @param string|null $outputFormat
+     *
      * @return string
      */
     public static function convertSearchCriteria($value, $inputFormat = null, $outputFormat = null)
@@ -95,7 +96,8 @@ class DateFormat
     }
 
     /**
-     * @param $format
+     * @param string $format
+     *
      * @return string
      */
     public static function dateFormatToRegex($format)

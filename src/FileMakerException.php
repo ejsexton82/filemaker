@@ -37,6 +37,9 @@ class FileMakerException extends \Exception
         $this->fm = $fm;
         if ($code !== null) {
             $message = $this->getErrorString($code);
+        } else {
+            $code = -1;
+            $message = '';
         }
 
         parent::__construct($message, $code, $previous);

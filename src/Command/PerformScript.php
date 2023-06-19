@@ -71,8 +71,7 @@ class PerformScript extends Command
     }
 
     /**
-     *
-     * @return Result
+     * @return Result|\airmoi\FileMaker\FileMakerException|null|true
      */
     public function execute()
     {
@@ -83,8 +82,11 @@ class PerformScript extends Command
     }
 
     /**
-     * Set Range params
+     *  Set Range params
+     *
      * @param array $params
+     *
+     * @return void
      */
     protected function setRangeParams(&$params)
     {

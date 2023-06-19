@@ -67,9 +67,9 @@ class Record
     }
 
     /**
-     * Returns the layout this record is associated with.
+     *  Returns the layout this record is associated with.
      *
-     * @return Layout This record's layout.
+     * @return Layout|RelatedSet This record's layout.
      */
     public function getLayout()
     {
@@ -187,16 +187,18 @@ class Record
     }
 
     /**
-     * Returns the unencoded value of the specified field.
+     *  Returns the unencoded value of the specified field.
      *
-     * This method does not convert special characters in the field value to
-     * HTML entities.
+     *  This method does not convert special characters in the field value to
+     *  HTML entities.
+     *
      * @deprecated since version 2.0 use getField($field, $repetition = 0, $unencoded = true) instead
+     *
      * @param string $field Name of field.
      * @param integer $repetition Field repetition number to get.
      *        Defaults to the first repetition.
      *
-     * @return string Unencoded field value.
+     * @return FileMakerException|null|string Unencoded field value.
      */
     public function getFieldUnencoded($field, $repetition = 0)
     {
@@ -204,21 +206,23 @@ class Record
     }
 
     /**
-     * Returns the value of the specified field as a UNIX
-     * timestamp.
+     *  Returns the value of the specified field as a UNIX
+     *  timestamp.
      *
-     * If the field is a date field, the timestamp is
-     * for the field date at midnight. It the field is a time field,
-     * the timestamp is for that time on January 1, 1970. Timestamp
-     * (date and time) fields map directly to the UNIX timestamp. If the
-     * specified field is not a date or time field, or if the timestamp
-     * generated would be out of range, then this method throws a
-     * FileMakerException object instead.
+     *  If the field is a date field, the timestamp is
+     *  for the field date at midnight. It the field is a time field,
+     *  the timestamp is for that time on January 1, 1970. Timestamp
+     *  (date and time) fields map directly to the UNIX timestamp. If the
+     *  specified field is not a date or time field, or if the timestamp
+     *  generated would be out of range, then this method throws a
+     *  FileMakerException object instead.
      *
      * @param string $field Name of the field.
      * @param integer $repetition Field repetition number to get.
      *        Defaults to the first repetition.
-     * @return FileMakerException|int Timestamp value.
+     *
+     * @return FileMakerException|false|null|string Timestamp value.
+     *
      * @throws FileMakerException
      */
     public function getFieldAsTimestamp($field, $repetition = 0)
@@ -263,14 +267,15 @@ class Record
     }
 
     /**
-     * Sets the value of $field.
+     *  Sets the value of $field.
      *
      * @param string $field Name of the field.
      * @param string $value New value of the field.
      * @param integer $repetition Field repetition number to set.
      *        Defaults to the first repetition.
      *
-     * @return string|FileMakerException
+     * @return FileMakerException|null|string
+     *
      * @throws FileMakerException
      */
     public function setField($field, $value, $repetition = 0)
@@ -307,15 +312,15 @@ class Record
     }
 
     /**
-     * Sets the new value for a date, time, or timestamp field from a
-     * UNIX timestamp value.
+     *  Sets the new value for a date, time, or timestamp field from a
+     *  UNIX timestamp value.
      *
-     * If the field is not a date or time field, then returns an error.
-     * Otherwise, returns TRUE.
+     *  If the field is not a date or time field, then returns an error.
+     *  Otherwise, returns TRUE.
      *
-     * If layout data for the target of this command has not already
-     * been loaded, calling this method loads layout data so that
-     * the type of the field can be checked.
+     *  If layout data for the target of this command has not already
+     *  been loaded, calling this method loads layout data so that
+     *  the type of the field can be checked.
      *
      * @todo use DateTime instead of date() to handle pre-epoch timestamps
      *
@@ -324,7 +329,8 @@ class Record
      * @param integer $repetition Field repetition number to set.
      *        Defaults to the first repetition.
      *
-     * @return string
+     * @return Field|FileMakerException|null|string
+     *
      * @throws FileMakerException
      */
     public function setFieldFromTimestamp($field, $timestamp, $repetition = 0)
@@ -418,9 +424,11 @@ class Record
     }
 
     /**
-     * Set the parent record, if this record is a child record in a portal.
+     *  Set the parent record, if this record is a child record in a portal.
      *
      * @param Record $record
+     *
+     * @return void
      */
     public function setParent($record)
     {
@@ -487,7 +495,8 @@ class Record
     /**
      * Saves any changes to this record in the database on the Database Server.
      *
-     * @return boolean|FileMakerException TRUE, if successful.
+     * @return FileMakerException|Result|bool|null TRUE, if successful.
+     *
      * @throws FileMakerException
      */
     public function commit()
@@ -519,9 +528,10 @@ class Record
     }
 
     /**
-     * Deletes this record from the database on the Database Server.
+     *  Deletes this record from the database on the Database Server.
      *
-     * @return Result|FileMakerException Response object.
+     * @return FileMakerException|Result|null Response object.
+     *
      * @throws FileMakerException
      */
     public function delete()
@@ -543,14 +553,15 @@ class Record
     }
 
     /**
-     * Gets a specific related record.
+     *  Gets a specific related record.
      *
      * @access private
      *
      * @param string $relatedSetName Name of the portal.
      * @param string $recordId Record ID of the record in the portal.
      *
-     * @return Record|FileMakerException Record object.
+     * @return FileMakerException|null|self Record object.
+     *
      * @throws FileMakerException
      */
     public function getRelatedRecordById($relatedSetName, $recordId)
@@ -570,8 +581,8 @@ class Record
     }
 
     /**
+     * @return FileMakerException|Result|bool TRUE on success
      *
-     * @return boolean|FileMakerException TRUE on success
      * @throws FileMakerException
      */
     private function commitAdd()
@@ -586,8 +597,8 @@ class Record
     }
 
     /**
+     * @return FileMakerException|Result|bool TRUE on success
      *
-     * @return boolean|FileMakerException TRUE on success
      * @throws FileMakerException
      */
     private function commitEdit()

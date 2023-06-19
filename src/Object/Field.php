@@ -413,15 +413,17 @@ class Field
     }
 
     /**
-     * Returns the list of choices from the value list associated with this
-     * field.
+     *  Returns the list of choices from the value list associated with this
+     *  field.
      *
-     * If this field is not associated with a value list, this method returns
-     * NULL.
+     *  If this field is not associated with a value list, this method returns
+     *  NULL.
      *
      * @param string $listName Name of the value list.
+     *
      * @throws FileMakerException
-     * @return array|FileMakerException Value list array.
+     *
+     * @return FileMakerException|array|bool Value list array.
      */
     public function getValueList($listName = null)
     {
@@ -450,9 +452,11 @@ class Field
     }
 
     /**
-     * Check if the given string is valid timestamp with 4 digit year
+     *  Check if the given string is valid timestamp with 4 digit year
+     *
      * @param string $value
-     * @return bool
+     *
+     * @return false|int
      */
     public function checkTimeStampFormatFourDigitYear($value)
     {
@@ -463,9 +467,11 @@ class Field
     }
 
     /**
-     * Check if the given string is a valide timestamp format
+     *  Check if the given string is a valide timestamp format
+     *
      * @param string $value
-     * @return bool
+     *
+     * @return false|int
      *
      * @todo test/handle custom date formats
      */
@@ -478,9 +484,11 @@ class Field
     }
 
     /**
-     * Check if the given string is a valide date format
+     *  Check if the given string is a valide date format
+     *
      * @param string $value
-     * @return bool
+     *
+     * @return false|int
      *
      * @todo test/handle custom date formats
      */
@@ -490,9 +498,11 @@ class Field
     }
 
     /**
-     * Check if the given string is a valide time format
+     *  Check if the given string is a valide time format
+     *
      * @param string $value
-     * @return bool
+     *
+     * @return false|int
      *
      * @todo test/handle custom date formats
      */
@@ -512,10 +522,13 @@ class Field
     }
 
     /**
-     * Check if the given string is a valid date
+     *  Check if the given string is a valid date
+     *
      * @param string $value
      * @param int $rule
      * @param FileMakerValidationException $validationError
+     *
+     * @return void
      */
     public function checkDateValidity($value, $rule, FileMakerValidationException $validationError)
     {
@@ -542,11 +555,14 @@ class Field
     }
 
     /**
-     * Check if the given string is a valid time
+     *  Check if the given string is a valid time
+     *
      * @param string $value
      * @param int $rule
      * @param FileMakerValidationException $validationError
      * @param bool $shortHoursFormat
+     *
+     * @return void
      */
     public function checkTimeValidity($value, $rule, FileMakerValidationException $validationError, $shortHoursFormat)
     {

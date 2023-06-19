@@ -16,8 +16,7 @@ use airmoi\FileMaker\Object\Result;
 class FindAny extends Find
 {
     /**
-     *
-     * @return Result
+     * @return Result|\airmoi\FileMaker\FileMakerException|null|true
      */
     public function execute()
     {
