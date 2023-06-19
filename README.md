@@ -1,12 +1,13 @@
 # FileMaker® PHP-API
 FileMaker® PHP API rewritten for PHP 5.5+.
-It is compatible with PHP 7.0+ and uses PSR-4 autoloading specifications.
+It is compatible with PHP 7.0+, PHP 8.0+, and uses PSR-4 autoloading specifications.
 
 ## Features
 This version of the PHP-API add the following feature to the offical API :
 * Error handling using Exception (you can restore the original behavior using option 'errorHandling' => 'default')
 * PSR-4 autoloading and installation using composer
 * PHP 7.0+ compatibility
+* PHP 8.0+ compatibility
 * 'dateFormat' option to select the input/output date format
 * 'emptyAsNull' option to return empty value as null
 * Support setRange() method with PerformScript command (as supported by CWP)
@@ -35,7 +36,9 @@ to your composer.json file
 
 ### Manual Install
 
-You can also manually install the API easily to your project. Just download the source [ZIP](https://github.com/airmoi/FileMaker/archive/master.zip) and extract its content into your project.
+You can also manually install the API easily to your project. Just download the
+source [ZIP](https://github.com/airmoi/FileMaker/archive/master.zip) and
+extract its content into your project.
 
 ## Usage
 
@@ -57,9 +60,11 @@ $fm = new FileMaker($database, $host, $username, $password, $options);
 
 STEP 4 : use it quite the same way you would use the offical API...
 
-...And enjoy code completion using your favorite IDE and php 7 support without notice/warnings.
+...And enjoy code completion using your favorite IDE and php 7/8 support
+without notice/warnings.
 
-You may also find sample usage by reading the `sample.php` file located in the "demo" folder 
+You may also find sample usage by reading the `sample.php` file located in the
+"demo" folder 
 
 ### Sample demo code
 
@@ -87,8 +92,9 @@ catch (FileMakerException $e) {
 
 ## Important notice
 
-The 2.1 release aims to improve compatibility with the original FileMaker PHP-API.
-However, you will need to changes few things in your code in order to use it
+The 2.1 release aims to improve compatibility with the original FileMaker
+PHP-API. However, you will need to changes few things in your code in order to
+use it
 
 The major changes compared to the official package are : 
 
